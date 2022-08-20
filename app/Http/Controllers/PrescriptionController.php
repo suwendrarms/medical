@@ -63,7 +63,7 @@ class PrescriptionController extends Controller
                     'delivery_address_line2'=>$request->address2,
                     'delivery_address_line3'=>$request->address3,
                     'date'=>$request->date,
-                    'time-slot'=>$request->time_slot,
+                    'time_slot'=>$request->slot,
                     'status'=>0
                 ]);
 
@@ -116,7 +116,7 @@ class PrescriptionController extends Controller
 
         $quotations=$this->DbManagement->getQuotationsCustomerById($id);
 
-        //dd($drugs);
+       // dd($prescription);
         return view('pages.prescriptions.view_cus',compact('prescription','drugs','quotations'));
 
     }

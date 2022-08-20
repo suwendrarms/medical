@@ -20,6 +20,17 @@
 
         <div class="form-group row">
             <div class="col-lg-6">
+            <label>Date:</label>
+                <h4>{{$prescription->date}}</h4>
+            </div>
+            <div class="col-lg-6">
+            <label>Time Slot:</label>
+            <h4>{{$prescription->time_slot}}</h4>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-6">
             <label>Address:</label>
                 <h4>{{$prescription->delivery_address_line1}},{{$prescription->delivery_address_line1}},{{$prescription->delivery_address_line1}}</h4>
             </div>
@@ -98,13 +109,13 @@
                             <th>Total : <h4 id="total">Rs. {{$quotations->amount}}</h4></th>
                         </tr>
                 </table>
-                @endif
+                
                   <div id="rej_view" class="d-none">
-                  <a href="javascript:void(0);" class="btn btn-success mr-2 add-trash" data-prId="{{$prescription->prescription_id}}" data-id="{{$quotations->id}}" data-status="2">Accept</a>
+                   <a href="javascript:void(0);" class="btn btn-success mr-2 add-trash" data-prId="{{$prescription->prescription_id}}" data-id="{{$quotations->id}}" data-status="2">Accept</a>
                  
-                 <a href="javascript:void(0);" class="btn btn-primary mr-2 add-trash" data-prId="{{$prescription->prescription_id}}" data-id="{{$quotations->id}}" data-status="3">Reject</a>
+                   <a href="javascript:void(0);" class="btn btn-primary mr-2 add-trash" data-prId="{{$prescription->prescription_id}}" data-id="{{$quotations->id}}" data-status="3">Reject</a>
                   </div>
-               
+                  @endif
            </div>
            
        </div>

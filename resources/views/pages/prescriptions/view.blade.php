@@ -20,8 +20,19 @@
 
         <div class="form-group row">
             <div class="col-lg-6">
+            <label>Date:</label>
+                <h4>{{$prescription->date}}</h4>
+            </div>
+            <div class="col-lg-6">
+            <label>Time Slot:</label>
+            <h4>{{$prescription->time_slot}}</h4>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-6">
             <label>Address:</label>
-                <h4>{{$prescription->delivery_address_line1}},{{$prescription->delivery_address_line1}},{{$prescription->delivery_address_line1}}</h4>
+                <h4>{{$prescription->delivery_address_line1}},{{$prescription->delivery_address_line2}},{{$prescription->delivery_address_line3}}</h4>
             </div>
             <div class="col-lg-6">
             <label>Phone Number:</label>
@@ -408,7 +419,7 @@ var user_id =$("#user_id").val();
 							 content: 'Successfully updated',
 							 type: '',
 						 });
-						 row.hide();
+						 location.reload();
 					 }
 									
 				}

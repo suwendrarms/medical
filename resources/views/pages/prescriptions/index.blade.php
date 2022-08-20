@@ -57,6 +57,8 @@
 			    <tr class="datatable-row">
 					<th title="Field #1">No</th>
 					<th title="Field #2">Name</th>
+					<th title="Field #2">Date</th>
+					<th title="Field #2">Time Slot</th>
 					<th title="Field #3">Email</th>
 					<th title="Field #4">Phone Number</th>
 					<th title="Field #5">Delivery Address</th>
@@ -72,6 +74,8 @@
 		<tr>
 			<td>{{$as+1}}</td>
 			<td>{{$val->name}}</td>
+			<td>{{$val->date}}</td>
+			<td>{{$val->time_slot}}</td>
 			<td>{{$val->email}}</td>
             <td>{{$val->phone_number}}</td>
             <td>{{$val->delivery_address_line1}},{{$val->delivery_address_line2}},{{$val->delivery_address_line3}}</td>
