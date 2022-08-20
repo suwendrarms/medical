@@ -8,6 +8,7 @@ use App\Http\Controllers\PrescriptionController;
 use App\Http\Controllers\DrugController;
 use App\Http\Controllers\QuotationController;
 use App\Http\Controllers\TimeSlotController;
+use App\Http\Controllers\CustomerController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -87,5 +88,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/add-delivery', [QuotationController::class,'delivery']);
 
     Route::post('/notification', [QuotationController::class,'notification']);
+
+    //customer management
+    Route::get('/customer', [CustomerController::class,'index'])->name('customer.index');
+    Route::post('/customer-change', [CustomerController::class,'change']);
    
 });

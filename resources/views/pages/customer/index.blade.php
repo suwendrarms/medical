@@ -11,7 +11,7 @@
 			<div class="dropdown dropdown-inline mr-2">
 			</div>
 											
-			<!-- <a href="{{route('dealars.create')}}" class="btn btn-primary font-weight-bolder">
+			<!-- <a href="" class="btn btn-primary font-weight-bolder">
 				<span class="svg-icon svg-icon-md">
 					
 					<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -65,45 +65,33 @@
 					<th title="Field #1">No</th>
 					<th title="Field #2">Name</th>
 					<th title="Field #3">Email</th>
-					<th title="Field #4">Phone Number</th>
-					<th title="Field #5">Vehicle Number</th>
-					<th title="Field #6">ERP Number</th>				
+					<th title="Field #4">Phone Number</th>			
 					<th title="Field #7">Action</th>
 				</tr>
 			</thead>
 		<tbody>
 			
             @foreach($customers as $as=>$customer)
-			@if($customer->vehicle!=null)
+			
             <tr>
                 <td>{{$as+1}}</td>
                 <td>{{$customer->name}}</td>
 				<td>{{$customer->email}}</td>
                 <td>{{$customer->phone_number}}</td>
-                <td>
-					
-					{{$customer->vehicle->vehicle_no}}
-					
-				</td>
+               
 				<td>
-				    @if($customer->customer_erp_id=='')
-					<span style="width: 108px;"><span class="label label-lg font-weight-bold label-light-danger label-inline">No Erp Number</span></span>
+				@if($customer->user_type==1)
+				<a href="#"  class="btn btn-sm btn-clean btn-icon change_user" data-id="{{$customer->id}}" aria-expanded="true"><i class="la la-user"></i></a>
 					@else
-					{{$customer->customer_erp_id}}
-					<a href="#" data-toggle="modal" data-target="#kt_select_modal_erp" class="btn btn-sm btn-clean btn-icon edit-erp" data-id="{{$customer->id}}" data-erp="{{$customer->customer_erp_id}}" aria-expanded="true"><i class="la la-edit"></i></a>
+					<span style="width: 108px;"><span class="label label-lg font-weight-bold label-light-danger label-inline">Internal User</span></span>
+					
 					@endif
 				</td>
                 <td>
-				@if($customer->customer_erp_id=='')
-				<a href="#" class="btn btn-light-warning font-weight-bold mr-2 show-m" data-id="{{$customer->id}}" data-name="{{$customer->name}}" data-phone="{{$customer->phone_number}}" data-vhi="{{$customer->vehicle->vehicle_no}}" data-toggle="modal" data-target="#kt_select_modal">verify</a>
-				<a href="javascript:void(0);" class="btn btn-sm btn-clean btn-icon add-trash" data-id="{{$customer->id}}" data-ve="{{$customer->vehicle->ve_id}}"><i class="la la-trash"></i></a>									
-				@else
-				<span style="width: 108px;"><span class="label label-lg font-weight-bold label-light-success label-inline">Verified</span></span>
-				@endif
 				
 			    </td>
             </tr>
-			@endif
+		
             @endforeach					
 	    </tbody>
 	    </table>
@@ -111,115 +99,8 @@
 	</div>						
 </div>
 
-<div class="modal fade" id="kt_select_modal_erp" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
 
-			<div class="modal-header">
-				<h5 class="modal-title">Edit ERP Number</h5>
-				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<i aria-hidden="true" class="ki ki-close"></i>
-				</button> -->
-			</div>
 
-			<form class="form" method="post" action="{{route('erp.edit')}}">
-              @csrf
-			 	<input type="hidden" class="" id="u_id" name="u_id">
-
-				<div class="modal-body">
-
-					<div class="form-group row">
-						<label class="col-form-label text-right col-lg-3 col-sm-12">ERP Number</label>
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							<input type="text" class="form-control" name ="erp_id" id="erp_id" required/>						
-						</div>
-					</div>
-                </div>
-				
-				<div class="modal-footer">
-					<a href="{{route('customer.index')}}" type="button" class="btn btn-primary mr-2">Close</a>
-					<button type="submit" class="btn btn-secondary">Submit</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="kt_select_modal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-
-			<div class="modal-header">
-				<h5 class="modal-title">Customer verify</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<i aria-hidden="true" class="ki ki-close"></i>
-				</button>
-			</div>
-
-			<form class="form" method="post" id="form">
-              @csrf
-			 	<input type="hidden" class="" id="cus_id" name="cus_id">
-
-				<div class="modal-body">
-					<div class="form-group row">
-						<label class="col-form-label text-right col-lg-3 col-sm-12">Customer Name</label>
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							 <!-- <input type="text" class="form-control" value="Some value" /> -->
-							<label class="col-form-label text-right col-lg-3 col-sm-12"><h5 id ="name"></h5></label>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-form-label text-right col-lg-3 col-sm-12">Customer Phone Number</label>
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							<!-- <input type="text" class="form-control" value="Some value" /> -->
-							<label class="col-form-label text-right col-lg-3 col-sm-12"><h5 id ="phone"></h5></label>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-form-label text-right col-lg-3 col-sm-12">Customer Vehicle Number</label>
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							<!-- <input type="text" class="form-control" value="Some value" /> -->
-							<label class="col-form-label text-right col-lg-3 col-sm-12"><h5 id ="vhi"></h5></label>
-						</div>
-					</div>
-
-					<div class="form-group row">
-						<label class="col-form-label text-right col-lg-3 col-sm-12">Customer ERP Number</label>
-						<div class="col-lg-9 col-md-9 col-sm-12">
-							<input type="text" class="form-control" name ="erp" id="erp" />						
-						</div>
-					</div>
-				<div class="checkbox-list">
-                <label class="checkbox">
-                <input name="have_num" id="showroom" value="1" type="checkbox"/>
-                <span></span>
-               Add Vehicle Number
-                </label>
-                <div id="sup1" class="d-none">
-                    <table class="table table-bordered" id="dynamicAddRemove1">
-                    <tr>
-                        <th>Vehicle Number</th>
-                        <th>Action</th>
-                    </tr>
-
-                    <tr>
-                        <td><input type="text" name="addShowroomSupervisors[0][vehi_name]" placeholder="Enter vehicle number" class="form-control" />
-                        </td>
-                        <td><button type="button" name="add" id="dynamic-ar1" class="btn btn-outline-primary">Add Vehicle</button></td>
-                    </tr>
-                    </table>
-                </div>
-                </div>											
-				</div>
-				<div class="modal-footer">
-					<a href="{{route('customer.index')}}" type="button" class="btn btn-primary mr-2">Close</a>
-					<button type="submit" class="btn btn-secondary">Submit</button>
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
 @endsection
 
 @section('footer')
@@ -314,6 +195,58 @@ $(document).on('click', '.add-trash', function() {
 					   $.alert({
 						   title: 'Success',
 						   content: 'Successfully deleted',
+						   type: '',
+					   });
+					   row.hide();
+				   }
+								  
+			  }
+				   
+		   });
+	   
+		},
+		cancel: function () {
+
+		},
+	 }
+ }); 
+
+});
+
+$(document).on('click', '.change_user', function() {
+  
+  var content_id = $(this).attr('data-id');
+  console.log("content_id");
+ 
+   $.confirm({
+	 title: 'Are you sure?',
+	 content: 'you want to add internal user',
+	 buttons: {
+		confirm: function () {
+
+		   var formData = new FormData();
+
+		   formData.append('id', content_id);
+	  
+		   $.ajaxSetup({
+			 headers: {
+			  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			 }
+		   });
+
+
+		   $.ajax({
+			  url : '/customer-change',
+			  method : 'POST',
+			  data : formData,
+			  processData: false,  
+			  contentType: false, 
+			  success : function(data) {
+				  
+				   if(data == 'success'){
+					   $.alert({
+						   title: 'Success',
+						   content: 'Successfully updated!',
 						   type: '',
 					   });
 					   row.hide();

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+                <div class="panel-heading p-5 h-color"><h3>Login</h3></div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -18,7 +18,7 @@
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
-                                    <span class="help-block">
+                                    <span class="help-block er_msg">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
@@ -69,4 +69,16 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('css')
+<style>
+
+.h-color{
+    color: black !important;
+}
+.er_msg{
+    color: red !important;
+}
+</style>
 @endsection

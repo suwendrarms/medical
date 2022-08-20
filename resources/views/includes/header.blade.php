@@ -20,6 +20,13 @@
 							</a>
 							<div class="menu-submenu menu-submenu-classic menu-submenu-left">
 								<ul class="menu-subnav">
+								    <li class="menu-item" aria-haspopup="true">
+										<a href="{{route('customer.index')}}" class="menu-link">
+											<span class="menu-text">All users</span>
+											<span class="menu-desc"></span>
+											<i id="new_user" class="fa fa-circle text-danger icon-sm d-none"></i>
+										</a>
+									</li>
 									<li class="menu-item" aria-haspopup="true">
 										<a href="{{route('permission.index')}}" class="menu-link">
 											<span class="menu-text">Create Permission</span>

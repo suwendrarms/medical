@@ -208,8 +208,8 @@
   }
 
   function sendInvoice(){
-
-  var user_id =$("#user_id").val();
+    $("#send_q").addClass('d-none');
+var user_id =$("#user_id").val();
  var prescription_id =$("#prescription_id").val();
 
 
@@ -242,7 +242,14 @@
 							 content: 'Successfully Send Quotation and email !',
 							 type: '',
 						 });
-				}	
+				}else{
+          $("#send_q").removeClass('d-none');		
+						 $.alert({
+							 title: 'fail',
+							 content: 'try agin !',
+							 type: '',
+						 });
+        }	
     }
        
    });
