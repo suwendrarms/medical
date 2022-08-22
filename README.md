@@ -17,7 +17,7 @@
 Clone the project
 
 ```bash
-   git clone https://github.com/suwendrarms/php-exam.git
+   git clone https://github.com/suwendrarms/medical.git
 ```
 
 Go to the project directory
@@ -44,7 +44,7 @@ Start the server
 Database script path
 
 ```bash
-  Sql_script/database_sample.sql
+  SQL_Database/phpexam.sql
 
 ```
 #### Live and local server Login
